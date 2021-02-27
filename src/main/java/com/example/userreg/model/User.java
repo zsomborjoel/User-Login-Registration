@@ -1,9 +1,7 @@
 package com.example.userreg.model;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +10,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
-@Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
@@ -30,23 +26,21 @@ public class User implements UserDetails {
             generator = "user_sequence"
     )
     private Long id;
-    private String name;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    public User(String name, String username, String email, String password, UserRole userRole, Boolean locked, Boolean enabled) {
-        this.name = name;
-        this.username = username;
+    public User(String firstName, String lastName, String email, String password, UserRole userRole) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     @Override
@@ -55,6 +49,7 @@ public class User implements UserDetails {
         return Collections.singletonList(authority);
     }
 
+
     @Override
     public String getPassword() {
         return this.password;
@@ -62,8 +57,9 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -83,6 +79,69 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserRole getUserRole() {
+        return this.userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
+    public Boolean isLocked() {
+        return this.locked;
+    }
+
+    public Boolean getLocked() {
+        return this.locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnabled() {
+        return this.enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
 }
