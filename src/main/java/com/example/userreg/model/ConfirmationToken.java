@@ -3,6 +3,7 @@ package com.example.userreg.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@Entity
 public class ConfirmationToken {
     
     @SequenceGenerator(
@@ -44,6 +46,7 @@ public class ConfirmationToken {
         name = "app_user_id"
     )
     private User user;
+
 
     public ConfirmationToken(String token, LocalDateTime createdAt, LocalDateTime expiresAt, User user) {
         this.token = token;
@@ -92,4 +95,12 @@ public class ConfirmationToken {
         this.confirmedAt = confirmedAt;
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
 }

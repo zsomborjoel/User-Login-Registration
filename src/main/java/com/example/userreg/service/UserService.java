@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
         ConfirmationToken confirmationToken = new ConfirmationToken(
             token,
             now,
-            now.plusMinutes(15).now(),
+            now.plusMinutes(15),
             user
         );
 
@@ -59,5 +59,8 @@ public class UserService implements UserDetailsService {
 
         return token;
     }
+
+	public void enableAppUser(String email) {
+	}
 
 }
