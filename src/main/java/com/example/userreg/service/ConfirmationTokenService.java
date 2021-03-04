@@ -1,5 +1,6 @@
 package com.example.userreg.service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import com.example.userreg.model.ConfirmationToken;
@@ -23,7 +24,9 @@ public class ConfirmationTokenService {
         return confirmationTokenRepository.findByToken(token);
     }
 
-	public void setConfirmedAt(String token) {
+	public int setConfirmedAt(String token) {
+        return confirmationTokenRepository.updateConfirmedAt(
+                token, LocalDateTime.now());
 	}
     
 }
