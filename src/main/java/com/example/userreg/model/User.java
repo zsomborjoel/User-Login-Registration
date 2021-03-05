@@ -15,6 +15,8 @@ import java.util.Collections;
 @Entity
 public class User implements UserDetails {
 
+    private static final long serialVersionUID = -64103735302744720L;
+
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
