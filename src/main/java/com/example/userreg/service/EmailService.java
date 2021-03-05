@@ -31,6 +31,7 @@ public class EmailService implements IEmailService {
             helper.addTo(to);
             helper.setSubject("Confirm your email");
             helper.setFrom("zsombor.gyurkovics@engineer.com");
+            mailSender.send(message);
         } catch (MessagingException e) {
             LOGGER.error("failed to send email", e);
             throw new IllegalStateException("failed to send email");
